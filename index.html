@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Offline safety checklist for warehouse floor staff.">
+  <title>Offline Safety Checklist | Warehouse Crew</title>
+  <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to main content</a>
+  <header class="site-header">
+    <h1>Offline Safety Checklist</h1>
+    <p>Warehouse Crew floor inspection. Works without a connection.</p>
+  </header>
+  <div id="banner" class="banner" role="status" aria-live="polite" hidden></div>
+
+  <main id="main">
+    <div id="status" class="status" aria-live="polite"></div>
+
+    <section aria-labelledby="progress-heading">
+      <h2 id="progress-heading">Progress</h2>
+      <p id="progress-text">0 of 0 complete</p>
+      <progress id="progress-bar" max="1" value="0" aria-label="Checklist completion"></progress>
+    </section>
+
+    <section aria-labelledby="list-heading">
+      <h2 id="list-heading" tabindex="-1">Checklist</h2>
+      <form id="filter-form" class="row" role="search" aria-label="Filter checklist" novalidate>
+        <div class="field">
+          <label for="f-query">Search items</label>
+          <input id="f-query" type="search" autocomplete="off" maxlength="80">
+        </div>
+        <div class="field">
+          <label for="f-category">Category</label>
+          <select id="f-category"></select>
+        </div>
+        <div class="field">
+          <label for="f-status">Status</label>
+          <select id="f-status">
+            <option value="all">All</option>
+            <option value="open">Not done</option>
+            <option value="done">Done</option>
+          </select>
+        </div>
+      </form>
+      <div class="row tools">
+        <label class="inline"><input id="f-fail" type="checkbox"> Simulate network failure</label>
+        <button id="reload" type="button" class="secondary" aria-label="Reload checklist from server">Reload checklist</button>
+      </div>
+      <ul id="list" class="items"></ul>
+      <p id="empty" class="empty" hidden>No data found. Add an item below or change your filters.</p>
+    </section>
+
+    <section aria-labelledby="add-heading">
+      <h2 id="add-heading">Add checklist item</h2>
+      <form id="add-form" novalidate>
+        <div class="field">
+          <label for="a-title">Title (required)</label>
+          <input id="a-title" name="title" type="text" maxlength="200" autocomplete="off" aria-describedby="a-title-err" aria-required="true">
+          <p id="a-title-err" class="error" hidden></p>
+        </div>
+        <div class="row">
+          <div class="field">
+            <label for="a-category">Category (required)</label>
+            <select id="a-category" name="category" aria-describedby="a-category-err" aria-required="true"></select>
+            <p id="a-category-err" class="error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="a-priority">Priority (required)</label>
+            <select id="a-priority" name="priority" aria-describedby="a-priority-err" aria-required="true"></select>
+            <p id="a-priority-err" class="error" hidden></p>
+          </div>
+        </div>
+        <div class="field">
+          <label for="a-notes">Notes (optional)</label>
+          <textarea id="a-notes" name="notes" rows="3" maxlength="400" aria-describedby="a-notes-err"></textarea>
+          <p id="a-notes-err" class="error" hidden></p>
+        </div>
+        <button type="submit" aria-label="Add checklist item">Add item</button>
+      </form>
+    </section>
+
+    <section aria-labelledby="report-heading">
+      <h2 id="report-heading">Submit checklist</h2>
+      <form id="report-form" novalidate>
+        <div class="row">
+          <div class="field">
+            <label for="r-inspector">Inspector name (required)</label>
+            <input id="r-inspector" name="inspector" type="text" maxlength="200" autocomplete="name" aria-describedby="r-inspector-err" aria-required="true">
+            <p id="r-inspector-err" class="error" hidden></p>
+          </div>
+          <div class="field">
+            <label for="r-shift">Shift (required)</label>
+            <select id="r-shift" name="shift" aria-describedby="r-shift-err" aria-required="true"></select>
+            <p id="r-shift-err" class="error" hidden></p>
+          </div>
+        </div>
+        <p id="r-items-err" class="error" hidden></p>
+        <button id="submit-report" type="submit" aria-label="Submit checklist report">Submit checklist</button>
+      </form>
+    </section>
+
+    <section aria-labelledby="reports-heading">
+      <h2 id="reports-heading">Submitted reports</h2>
+      <ul id="reports" class="reports"></ul>
+      <p id="reports-empty" class="empty" hidden>No data found. Submitted reports will appear here.</p>
+    </section>
+  </main>
+
+  <script type="module" src="src/main.js"></script>
+</body>
+</html>
