@@ -9,7 +9,6 @@ npm run dev      # http://localhost:5173
 npm test
 npm run lint
 ```
-
 ## Deploy
 Static site, no build step. 
 - **Netlify:** drag the project folder into app.netlify.com/drop, or connect the GitHub repo (build command: none, publish directory: `.`).
